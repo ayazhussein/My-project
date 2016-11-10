@@ -1,32 +1,32 @@
-import { NgModule } from "@angular/core";
-import { BrowserModule } from "@angular/platform-browser";
-import { AppComponent } from "./app.component";
-import { DemoComponent } from "./demo/demo.component";
-import { DemoDataService } from "./demo/demo-data.service";
+import { NgModule } from '@angular/core';
+import { BrowserModule  } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { routing } from './app.routing';
+import { AUTH_DECLARATIONS } from './auth/';
+import {SHARED_DECLARATIONS} from './shared/';
+import { MAIN_DECLARATIONS } from './home/';
+import { SERVICES } from './services/'; 
+
+
+import { AppComponent } from './app.component';
+import { AuthGuard } from './auth/auth.guard';
+
 
 @NgModule({
-  // Components, Pipes, Directive
-  declarations: [
-    AppComponent,
-    DemoComponent
-  ],
-  // Entry Components
-  entryComponents: [
-    AppComponent
-  ],
-  // Providers
-  providers: [
-    DemoDataService
-  ],
-  // Modules
-  imports: [
-    BrowserModule
-  ],
-  // Main Component
-  bootstrap: [ AppComponent ]
+    imports: [
+        BrowserModule,
+        FormsModule,
+        ReactiveFormsModule,
+        routing
+      
+    ],
+    declarations: [
+        AppComponent,
+        ...AUTH_DECLARATIONS,
+        ...SHARED_DECLARATIONS,
+        ...MAIN_DECLARATIONS
+        ],
+    providers: [AuthGuard, ...SERVICES],
+    bootstrap: [AppComponent],
 })
-export class AppModule {
-  constructor() {
-
-  }
-}
+export class AppModule { }
