@@ -4,7 +4,7 @@ import template from './app.component.html';
 
 @Component({
     selector: 'main-app',
-    template
+    template,
 
 })
 export class AppComponent { }
